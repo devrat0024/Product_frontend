@@ -46,7 +46,7 @@ const AuthPage = ({ onLogin }) => {
     try {
       if (isLogin) {
         // Login flow via API
-        const response = await fetch("http://localhost:5000/api/auth/login", {
+        const response = await fetch("https://product-backend-als5.onrender.com/api/auth/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -71,7 +71,7 @@ const AuthPage = ({ onLogin }) => {
           return;
         }
 
-        const response = await fetch("http://localhost:5000/api/auth/register", {
+        const response = await fetch("https://product-backend-als5.onrender.com/api/auth/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

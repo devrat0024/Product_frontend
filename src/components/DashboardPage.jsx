@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./DashboardPage.css";
 
+const API_BASE_URL = "https://product-backend-als5.onrender.com";
+
 const DashboardPage = ({ user, onLogout, onUpdateUser }) => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [isEditing, setIsEditing] = useState(false);
@@ -17,7 +19,7 @@ const DashboardPage = ({ user, onLogout, onUpdateUser }) => {
     try {
       const token = localStorage.getItem("token");
       if (!token) return;
-      const response = await fetch("http://localhost:5000/api/products", {
+      const response = await fetch(`${API_BASE_URL}/api/products`, {
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -172,7 +174,7 @@ const DashboardPage = ({ user, onLogout, onUpdateUser }) => {
     try {
       const token = localStorage.getItem("token");
       if (isEditingProduct) {
-        const response = await fetch(`http://localhost:5000/api/products/${productForm.id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/products/${productForm.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -194,7 +196,7 @@ const DashboardPage = ({ user, onLogout, onUpdateUser }) => {
         }
         setIsEditingProduct(false);
       } else {
-        const response = await fetch("http://localhost:5000/api/products", {
+        const response = await fetch(`${API_BASE_URL}/api/products`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -247,7 +249,7 @@ const DashboardPage = ({ user, onLogout, onUpdateUser }) => {
     if (confirm("Are you sure you want to delete this material?")) {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`http://localhost:5000/api/products/${productId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/products/${productId}`, {
           method: "DELETE",
           headers: {
             "Authorization": `Bearer ${token}`
@@ -276,7 +278,7 @@ const DashboardPage = ({ user, onLogout, onUpdateUser }) => {
         quantity: Number(item.quantity),
       }));
 
-      const response = await fetch("http://localhost:5000/api/bills", {
+      const response = await fetch(`${API_BASE_URL}/api/bills`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
